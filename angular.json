@@ -51,7 +51,9 @@
               "apps/storybook-app/src/favicon.ico",
               "apps/storybook-app/src/assets"
             ],
-            "styles": ["apps/storybook-app/src/styles.scss"],
+            "styles": [
+              "apps/storybook-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -112,10 +114,42 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/storybook-app"],
+          "outputs": [
+            "coverage/apps/storybook-app"
+          ],
           "options": {
             "jestConfig": "apps/storybook-app/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "apps/storybook-app/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/storybook-app",
+            "config": {
+              "configFolder": "apps/storybook-app/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -141,7 +175,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/storybook-app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/storybook-app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
